@@ -9,24 +9,24 @@ drive a conclusion.
 
 ## Terms
 
-- **PPS** — Points per shot: total points on field-goal attempts divided by attempts. Free throws excluded.
-- **xPPS** — Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
-- **shot-making** — Actual minus expected points per 100 shots: conversion above or below what the shot diet itself explains. Positive means making shots the model prices as hard.
-- **EB making** — A player's shot-making after empirical-Bayes shrinkage: the observed number pulled toward the league mean in proportion to its sampling noise. The number to trust for projection.
-- **FGA** — Field-goal attempts.
-- **RAPM** — Regularized adjusted plus-minus: a ridge regression crediting each player with net points per 100 possessions while adjusting for the other nine players on the floor.
-- **net_100** — Net points per 100 possessions: 100 x plus-minus / possessions; sits on the same scale as the NBA's published net rating.
-- **rush** — Shots in the final four seconds of a period - the desperation window where both shot selection and execution collapse.
-- **empirical Bayes** — Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
-- **shrinkage weight** — The fraction of an observed number that survives empirical-Bayes regression: 1 means fully trusted, 0 means replaced by the league mean.
-- **CI** — Confidence interval.
-- **corner three** — A three-pointer from the corner, where the NBA line is roughly 3 ft closer than the arc - the geometry discount that makes it the cheapest three.
+- **PPS**: Points per shot: total points on field-goal attempts divided by attempts. Free throws excluded.
+- **xPPS**: Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
+- **shot-making**: Actual minus expected points per 100 shots: conversion above or below what the shot diet itself explains. Positive means making shots the model prices as hard.
+- **EB making**: A player's shot-making after empirical-Bayes shrinkage: the observed number pulled toward the league mean in proportion to its sampling noise. The number to trust for projection.
+- **FGA**: Field-goal attempts.
+- **RAPM**: Regularized adjusted plus-minus: a ridge regression crediting each player with net points per 100 possessions while adjusting for the other nine players on the floor.
+- **net_100**: Net points per 100 possessions: 100 x plus-minus / possessions; sits on the same scale as the NBA's published net rating.
+- **rush**: Shots in the final four seconds of a period - the desperation window where both shot selection and execution collapse.
+- **empirical Bayes**: Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
+- **shrinkage weight**: The fraction of an observed number that survives empirical-Bayes regression: 1 means fully trusted, 0 means replaced by the league mean.
+- **CI**: Confidence interval.
+- **corner three**: A three-pointer from the corner, where the NBA line is roughly 3 ft closer than the arc - the geometry discount that makes it the cheapest three.
 
 ## Keys
 
-- **They hunt corner threes** — 30.2% of their threes come from the corners (league 25.9%). Run shooters off the corner line first.
-- **Naji Marshall is a genuine shot-maker** — +3.8 pts/100 above expectation after empirical-Bayes shrinkage; contest even the bad shots.
-- **Best shot diet: P.J. Washington** (1.11 xPPS on 658 FGA) — the value is where the shots come from; deny the spot, not the release.
+- **They hunt corner threes**: 30.2% of their threes come from the corners (league 25.9%). Run shooters off the corner line first.
+- **Naji Marshall is a genuine shot-maker**: +3.8 pts/100 above expectation after empirical-Bayes shrinkage; contest even the bad shots.
+- **Best shot diet: P.J. Washington** (1.11 xPPS on 658 FGA). The value is where the shots come from; deny the spot, not the release.
 - **Their most-used five that wins its minutes**: P. Washington - D. Gafford - N. Marshall - M. Christie - C. Flagg (+0.5/100 over 200 possessions).
 
 ## Shot profile vs league
@@ -34,7 +34,7 @@ drive a conclusion.
 | | DAL | League | Δ |
 |---|---|---|---|
 | PPS (points per shot) | 1.054 | 1.091 | -0.037 |
-| xPPS — shot-diet price* | 1.082 | 1.097 | -0.015 |
+| xPPS, the shot-diet price* | 1.082 | 1.097 | -0.015 |
 | Shot-making, pts/100 vs model | -2.8 | -0.5 | -2.2 |
 | Rim share | 28.8% | 28.4% | +0.4 pp |
 | Mid-range share | 12.9% | 10.0% | +2.8 pp |
@@ -42,7 +42,7 @@ drive a conclusion.
 | Corner share of threes | 30.2% | 25.9% | +4.3 pp |
 | Final-4s (rush) shot share | 1.7% | 1.8% | -0.1 pp |
 
-\* xPPS prices where they shoot from, independent of whether shots fell —
+\* xPPS prices where they shoot from, independent of whether shots fell:
 the stable, scoutable part of the profile (year-over-year r ≈ .9).
 
 ## Personnel (top 8 by volume)
@@ -58,7 +58,7 @@ the stable, scoutable part of the profile (year-over-year r ≈ .9).
 | Ryan Nembhard | 390 | 0.954 | 0.979 | -2.5 | -1.7 | +1.4 |
 | Anthony Davis | 334 | 1.042 | 1.086 | -4.4 | -3.0 | -0.0 |
 
-EB making = shot-making regressed to league mean by reliability — the
+EB making = shot-making regressed to league mean by reliability: the
 number to trust. RAPM from the opponent-adjusted 2025-26 lineup model
 (±≈3/100 CI at a season of minutes; treat as descriptive).
 

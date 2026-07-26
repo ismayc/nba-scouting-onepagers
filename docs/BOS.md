@@ -9,24 +9,24 @@ drive a conclusion.
 
 ## Terms
 
-- **PPS** — Points per shot: total points on field-goal attempts divided by attempts. Free throws excluded.
-- **xPPS** — Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
-- **shot-making** — Actual minus expected points per 100 shots: conversion above or below what the shot diet itself explains. Positive means making shots the model prices as hard.
-- **EB making** — A player's shot-making after empirical-Bayes shrinkage: the observed number pulled toward the league mean in proportion to its sampling noise. The number to trust for projection.
-- **FGA** — Field-goal attempts.
-- **RAPM** — Regularized adjusted plus-minus: a ridge regression crediting each player with net points per 100 possessions while adjusting for the other nine players on the floor.
-- **net_100** — Net points per 100 possessions: 100 x plus-minus / possessions; sits on the same scale as the NBA's published net rating.
-- **rush** — Shots in the final four seconds of a period - the desperation window where both shot selection and execution collapse.
-- **empirical Bayes** — Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
-- **shrinkage weight** — The fraction of an observed number that survives empirical-Bayes regression: 1 means fully trusted, 0 means replaced by the league mean.
-- **CI** — Confidence interval.
+- **PPS**: Points per shot: total points on field-goal attempts divided by attempts. Free throws excluded.
+- **xPPS**: Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
+- **shot-making**: Actual minus expected points per 100 shots: conversion above or below what the shot diet itself explains. Positive means making shots the model prices as hard.
+- **EB making**: A player's shot-making after empirical-Bayes shrinkage: the observed number pulled toward the league mean in proportion to its sampling noise. The number to trust for projection.
+- **FGA**: Field-goal attempts.
+- **RAPM**: Regularized adjusted plus-minus: a ridge regression crediting each player with net points per 100 possessions while adjusting for the other nine players on the floor.
+- **net_100**: Net points per 100 possessions: 100 x plus-minus / possessions; sits on the same scale as the NBA's published net rating.
+- **rush**: Shots in the final four seconds of a period - the desperation window where both shot selection and execution collapse.
+- **empirical Bayes**: Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
+- **shrinkage weight**: The fraction of an observed number that survives empirical-Bayes regression: 1 means fully trusted, 0 means replaced by the league mean.
+- **CI**: Confidence interval.
 
 ## Keys
 
-- **Above-the-break three team** — corners are only 17.4% of their threes (league 25.9%); their spacing lives higher on the arc.
-- **Volume-three profile** — 46.7% of attempts from deep (league 41.5%).
-- **Luka Garza is a genuine shot-maker** — +9.7 pts/100 above expectation after empirical-Bayes shrinkage; contest even the bad shots.
-- **Best shot diet: Neemias Queta** (1.26 xPPS on 499 FGA) — the value is where the shots come from; deny the spot, not the release.
+- **Above-the-break three team**: corners are only 17.4% of their threes (league 25.9%); their spacing lives higher on the arc.
+- **Volume-three profile**: 46.7% of attempts from deep (league 41.5%).
+- **Luka Garza is a genuine shot-maker**: +9.7 pts/100 above expectation after empirical-Bayes shrinkage; contest even the bad shots.
+- **Best shot diet: Neemias Queta** (1.26 xPPS on 499 FGA). The value is where the shots come from; deny the spot, not the release.
 - **Their most-used five that wins its minutes**: J. Brown - D. White - N. Queta - P. Pritchard - S. Hauser (+19.5/100 over 411 possessions).
 
 ## Shot profile vs league
@@ -34,7 +34,7 @@ drive a conclusion.
 | | BOS | League | Δ |
 |---|---|---|---|
 | PPS (points per shot) | 1.106 | 1.091 | +0.014 |
-| xPPS — shot-diet price* | 1.051 | 1.097 | -0.046 |
+| xPPS, the shot-diet price* | 1.051 | 1.097 | -0.046 |
 | Shot-making, pts/100 vs model | +5.5 | -0.5 | +6.0 |
 | Rim share | 21.0% | 28.4% | -7.4 pp |
 | Mid-range share | 12.4% | 10.0% | +2.3 pp |
@@ -42,7 +42,7 @@ drive a conclusion.
 | Corner share of threes | 17.4% | 25.9% | -8.5 pp |
 | Final-4s (rush) shot share | 2.0% | 1.8% | +0.2 pp |
 
-\* xPPS prices where they shoot from, independent of whether shots fell —
+\* xPPS prices where they shoot from, independent of whether shots fell:
 the stable, scoutable part of the profile (year-over-year r ≈ .9).
 
 ## Personnel (top 8 by volume)
@@ -58,7 +58,7 @@ the stable, scoutable part of the profile (year-over-year r ≈ .9).
 | Luka Garza | 357 | 1.308 | 1.128 | +18.0 | +9.7 | +0.5 |
 | Baylor Scheierman | 333 | 1.198 | 1.075 | +12.3 | +5.3 | +0.8 |
 
-EB making = shot-making regressed to league mean by reliability — the
+EB making = shot-making regressed to league mean by reliability: the
 number to trust. RAPM from the opponent-adjusted 2025-26 lineup model
 (±≈3/100 CI at a season of minutes; treat as descriptive).
 

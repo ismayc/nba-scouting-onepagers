@@ -9,22 +9,22 @@ drive a conclusion.
 
 ## Terms
 
-- **PPS** — Points per shot: total points on field-goal attempts divided by attempts. Free throws excluded.
-- **xPPS** — Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
-- **shot-making** — Actual minus expected points per 100 shots: conversion above or below what the shot diet itself explains. Positive means making shots the model prices as hard.
-- **EB making** — A player's shot-making after empirical-Bayes shrinkage: the observed number pulled toward the league mean in proportion to its sampling noise. The number to trust for projection.
-- **FGA** — Field-goal attempts.
-- **RAPM** — Regularized adjusted plus-minus: a ridge regression crediting each player with net points per 100 possessions while adjusting for the other nine players on the floor.
-- **net_100** — Net points per 100 possessions: 100 x plus-minus / possessions; sits on the same scale as the NBA's published net rating.
-- **rush** — Shots in the final four seconds of a period - the desperation window where both shot selection and execution collapse.
-- **empirical Bayes** — Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
-- **shrinkage weight** — The fraction of an observed number that survives empirical-Bayes regression: 1 means fully trusted, 0 means replaced by the league mean.
-- **CI** — Confidence interval.
+- **PPS**: Points per shot: total points on field-goal attempts divided by attempts. Free throws excluded.
+- **xPPS**: Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
+- **shot-making**: Actual minus expected points per 100 shots: conversion above or below what the shot diet itself explains. Positive means making shots the model prices as hard.
+- **EB making**: A player's shot-making after empirical-Bayes shrinkage: the observed number pulled toward the league mean in proportion to its sampling noise. The number to trust for projection.
+- **FGA**: Field-goal attempts.
+- **RAPM**: Regularized adjusted plus-minus: a ridge regression crediting each player with net points per 100 possessions while adjusting for the other nine players on the floor.
+- **net_100**: Net points per 100 possessions: 100 x plus-minus / possessions; sits on the same scale as the NBA's published net rating.
+- **rush**: Shots in the final four seconds of a period - the desperation window where both shot selection and execution collapse.
+- **empirical Bayes**: Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
+- **shrinkage weight**: The fraction of an observed number that survives empirical-Bayes regression: 1 means fully trusted, 0 means replaced by the league mean.
+- **CI**: Confidence interval.
 
 ## Keys
 
-- **Anthony Edwards is a genuine shot-maker** — +7.7 pts/100 above expectation after empirical-Bayes shrinkage; contest even the bad shots.
-- **Best shot diet: Rudy Gobert** (1.39 xPPS on 491 FGA) — the value is where the shots come from; deny the spot, not the release.
+- **Anthony Edwards is a genuine shot-maker**: +7.7 pts/100 above expectation after empirical-Bayes shrinkage; contest even the bad shots.
+- **Best shot diet: Rudy Gobert** (1.39 xPPS on 491 FGA). The value is where the shots come from; deny the spot, not the release.
 - **Their most-used five that wins its minutes**: M. Conley - R. Gobert - J. Randle - D. DiVincenzo - J. McDaniels (+15.9/100 over 226 possessions).
 
 ## Shot profile vs league
@@ -32,7 +32,7 @@ drive a conclusion.
 | | MIN | League | Δ |
 |---|---|---|---|
 | PPS (points per shot) | 1.118 | 1.091 | +0.027 |
-| xPPS — shot-diet price* | 1.106 | 1.097 | +0.009 |
+| xPPS, the shot-diet price* | 1.106 | 1.097 | +0.009 |
 | Shot-making, pts/100 vs model | +1.2 | -0.5 | +1.8 |
 | Rim share | 29.5% | 28.4% | +1.1 pp |
 | Mid-range share | 10.0% | 10.0% | -0.1 pp |
@@ -40,7 +40,7 @@ drive a conclusion.
 | Corner share of threes | 25.8% | 25.9% | -0.1 pp |
 | Final-4s (rush) shot share | 1.9% | 1.8% | +0.1 pp |
 
-\* xPPS prices where they shoot from, independent of whether shots fell —
+\* xPPS prices where they shoot from, independent of whether shots fell:
 the stable, scoutable part of the profile (year-over-year r ≈ .9).
 
 ## Personnel (top 8 by volume)
@@ -56,7 +56,7 @@ the stable, scoutable part of the profile (year-over-year r ≈ .9).
 | Bones Hyland | 468 | 1.154 | 1.094 | +6.0 | +3.1 | +1.3 |
 | Ayo Dosunmu | 261 | 1.180 | 1.095 | +8.5 | +3.7 | -0.7 |
 
-EB making = shot-making regressed to league mean by reliability — the
+EB making = shot-making regressed to league mean by reliability: the
 number to trust. RAPM from the opponent-adjusted 2025-26 lineup model
 (±≈3/100 CI at a season of minutes; treat as descriptive).
 

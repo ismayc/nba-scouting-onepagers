@@ -9,21 +9,21 @@ drive a conclusion.
 
 ## Terms
 
-- **PPS** — Points per shot: total points on field-goal attempts divided by attempts. Free throws excluded.
-- **xPPS** — Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
-- **shot-making** — Actual minus expected points per 100 shots: conversion above or below what the shot diet itself explains. Positive means making shots the model prices as hard.
-- **EB making** — A player's shot-making after empirical-Bayes shrinkage: the observed number pulled toward the league mean in proportion to its sampling noise. The number to trust for projection.
-- **FGA** — Field-goal attempts.
-- **RAPM** — Regularized adjusted plus-minus: a ridge regression crediting each player with net points per 100 possessions while adjusting for the other nine players on the floor.
-- **net_100** — Net points per 100 possessions: 100 x plus-minus / possessions; sits on the same scale as the NBA's published net rating.
-- **rush** — Shots in the final four seconds of a period - the desperation window where both shot selection and execution collapse.
-- **empirical Bayes** — Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
-- **CI** — Confidence interval.
+- **PPS**: Points per shot: total points on field-goal attempts divided by attempts. Free throws excluded.
+- **xPPS**: Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
+- **shot-making**: Actual minus expected points per 100 shots: conversion above or below what the shot diet itself explains. Positive means making shots the model prices as hard.
+- **EB making**: A player's shot-making after empirical-Bayes shrinkage: the observed number pulled toward the league mean in proportion to its sampling noise. The number to trust for projection.
+- **FGA**: Field-goal attempts.
+- **RAPM**: Regularized adjusted plus-minus: a ridge regression crediting each player with net points per 100 possessions while adjusting for the other nine players on the floor.
+- **net_100**: Net points per 100 possessions: 100 x plus-minus / possessions; sits on the same scale as the NBA's published net rating.
+- **rush**: Shots in the final four seconds of a period - the desperation window where both shot selection and execution collapse.
+- **empirical Bayes**: Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
+- **CI**: Confidence interval.
 
 ## Keys
 
-- **Volume-three profile** — 45.5% of attempts from deep (league 41.5%).
-- **Best shot diet: Nic Claxton** (1.20 xPPS on 583 FGA) — the value is where the shots come from; deny the spot, not the release.
+- **Volume-three profile**: 45.5% of attempts from deep (league 41.5%).
+- **Best shot diet: Nic Claxton** (1.20 xPPS on 583 FGA). The value is where the shots come from; deny the spot, not the release.
 - **Their most-used five that wins its minutes**: M. Porter Jr. - T. Mann - N. Claxton - N. Clowney - E. Dëmin (+2.1/100 over 633 possessions).
 
 ## Shot profile vs league
@@ -31,7 +31,7 @@ drive a conclusion.
 | | BKN | League | Δ |
 |---|---|---|---|
 | PPS (points per shot) | 1.041 | 1.091 | -0.051 |
-| xPPS — shot-diet price* | 1.105 | 1.097 | +0.008 |
+| xPPS, the shot-diet price* | 1.105 | 1.097 | +0.008 |
 | Shot-making, pts/100 vs model | -6.4 | -0.5 | -5.9 |
 | Rim share | 29.4% | 28.4% | +1.0 pp |
 | Mid-range share | 7.2% | 10.0% | -2.8 pp |
@@ -39,7 +39,7 @@ drive a conclusion.
 | Corner share of threes | 25.0% | 25.9% | -0.9 pp |
 | Final-4s (rush) shot share | 1.9% | 1.8% | +0.1 pp |
 
-\* xPPS prices where they shoot from, independent of whether shots fell —
+\* xPPS prices where they shoot from, independent of whether shots fell:
 the stable, scoutable part of the profile (year-over-year r ≈ .9).
 
 ## Personnel (top 8 by volume)
@@ -55,7 +55,7 @@ the stable, scoutable part of the profile (year-over-year r ≈ .9).
 | Ziaire Williams | 433 | 1.048 | 1.162 | -11.3 | -6.7 | -1.6 |
 | Terance Mann | 368 | 1.065 | 1.102 | -3.7 | -2.3 | -0.7 |
 
-EB making = shot-making regressed to league mean by reliability — the
+EB making = shot-making regressed to league mean by reliability: the
 number to trust. RAPM from the opponent-adjusted 2025-26 lineup model
 (±≈3/100 CI at a season of minutes; treat as descriptive).
 

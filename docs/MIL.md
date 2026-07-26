@@ -9,26 +9,26 @@ drive a conclusion.
 
 ## Terms
 
-- **PPS** — Points per shot: total points on field-goal attempts divided by attempts. Free throws excluded.
-- **xPPS** — Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
-- **shot-making** — Actual minus expected points per 100 shots: conversion above or below what the shot diet itself explains. Positive means making shots the model prices as hard.
-- **EB making** — A player's shot-making after empirical-Bayes shrinkage: the observed number pulled toward the league mean in proportion to its sampling noise. The number to trust for projection.
-- **FGA** — Field-goal attempts.
-- **RAPM** — Regularized adjusted plus-minus: a ridge regression crediting each player with net points per 100 possessions while adjusting for the other nine players on the floor.
-- **net_100** — Net points per 100 possessions: 100 x plus-minus / possessions; sits on the same scale as the NBA's published net rating.
-- **rush** — Shots in the final four seconds of a period - the desperation window where both shot selection and execution collapse.
-- **empirical Bayes** — Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
-- **shrinkage weight** — The fraction of an observed number that survives empirical-Bayes regression: 1 means fully trusted, 0 means replaced by the league mean.
-- **CI** — Confidence interval.
-- **corner three** — A three-pointer from the corner, where the NBA line is roughly 3 ft closer than the arc - the geometry discount that makes it the cheapest three.
+- **PPS**: Points per shot: total points on field-goal attempts divided by attempts. Free throws excluded.
+- **xPPS**: Expected points per shot - the model's fair price of a shot diet: what an average shooter would score on the same attempts, judged from location and shot type alone, before knowing what went in.
+- **shot-making**: Actual minus expected points per 100 shots: conversion above or below what the shot diet itself explains. Positive means making shots the model prices as hard.
+- **EB making**: A player's shot-making after empirical-Bayes shrinkage: the observed number pulled toward the league mean in proportion to its sampling noise. The number to trust for projection.
+- **FGA**: Field-goal attempts.
+- **RAPM**: Regularized adjusted plus-minus: a ridge regression crediting each player with net points per 100 possessions while adjusting for the other nine players on the floor.
+- **net_100**: Net points per 100 possessions: 100 x plus-minus / possessions; sits on the same scale as the NBA's published net rating.
+- **rush**: Shots in the final four seconds of a period - the desperation window where both shot selection and execution collapse.
+- **empirical Bayes**: Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
+- **shrinkage weight**: The fraction of an observed number that survives empirical-Bayes regression: 1 means fully trusted, 0 means replaced by the league mean.
+- **CI**: Confidence interval.
+- **corner three**: A three-pointer from the corner, where the NBA line is roughly 3 ft closer than the arc - the geometry discount that makes it the cheapest three.
 
 ## Keys
 
-- **They hunt corner threes** — 29.0% of their threes come from the corners (league 25.9%). Run shooters off the corner line first.
-- **Volume-three profile** — 45.7% of attempts from deep (league 41.5%).
-- **Mid-range reliant** — 13.1% from mid-range vs league 10.0%; live with contested twos over open threes.
-- **Bobby Portis is a genuine shot-maker** — +9.4 pts/100 above expectation after empirical-Bayes shrinkage; contest even the bad shots.
-- **Best shot diet: Giannis Antetokounmpo** (1.26 xPPS on 598 FGA) — the value is where the shots come from; deny the spot, not the release.
+- **They hunt corner threes**: 29.0% of their threes come from the corners (league 25.9%). Run shooters off the corner line first.
+- **Volume-three profile**: 45.7% of attempts from deep (league 41.5%).
+- **Mid-range reliant**: 13.1% from mid-range vs league 10.0%; live with contested twos over open threes.
+- **Bobby Portis is a genuine shot-maker**: +9.4 pts/100 above expectation after empirical-Bayes shrinkage; contest even the bad shots.
+- **Best shot diet: Giannis Antetokounmpo** (1.26 xPPS on 598 FGA). The value is where the shots come from; deny the spot, not the release.
 - **Their most-used five that wins its minutes**: G. Antetokounmpo - M. Turner - K. Porter Jr. - R. Rollins - A. Green (+12.1/100 over 364 possessions).
 
 ## Shot profile vs league
@@ -36,7 +36,7 @@ drive a conclusion.
 | | MIL | League | Δ |
 |---|---|---|---|
 | PPS (points per shot) | 1.131 | 1.091 | +0.040 |
-| xPPS — shot-diet price* | 1.099 | 1.097 | +0.003 |
+| xPPS, the shot-diet price* | 1.099 | 1.097 | +0.003 |
 | Shot-making, pts/100 vs model | +3.1 | -0.5 | +3.7 |
 | Rim share | 25.5% | 28.4% | -2.9 pp |
 | Mid-range share | 13.1% | 10.0% | +3.1 pp |
@@ -44,7 +44,7 @@ drive a conclusion.
 | Corner share of threes | 29.0% | 25.9% | +3.1 pp |
 | Final-4s (rush) shot share | 1.8% | 1.8% | -0.0 pp |
 
-\* xPPS prices where they shoot from, independent of whether shots fell —
+\* xPPS prices where they shoot from, independent of whether shots fell:
 the stable, scoutable part of the profile (year-over-year r ≈ .9).
 
 ## Personnel (top 8 by volume)
@@ -60,7 +60,7 @@ the stable, scoutable part of the profile (year-over-year r ≈ .9).
 | Kevin Porter Jr. | 514 | 1.019 | 1.065 | -4.5 | -3.2 | +0.2 |
 | Gary Trent Jr. | 473 | 1.034 | 1.058 | -2.4 | -1.6 | -4.1 |
 
-EB making = shot-making regressed to league mean by reliability — the
+EB making = shot-making regressed to league mean by reliability: the
 number to trust. RAPM from the opponent-adjusted 2025-26 lineup model
 (±≈3/100 CI at a season of minutes; treat as descriptive).
 

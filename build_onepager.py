@@ -5,7 +5,7 @@ one page, every number traceable to a pipeline. This generator composes the
 repo's existing machinery rather than inventing new stats:
 
   - 2025-26 shot profile priced by the shot-quality model's committed
-    2023-24 coefficients — legitimate on unseen seasons because the
+    2023-24 coefficients, legitimate on unseen seasons because the
     season-out backtest (shot-quality-study/06) validated exactly that
     transfer;
   - shot-making shrunk by the empirical-Bayes rule from 08_projection.py
@@ -103,7 +103,7 @@ def profile(df: pl.DataFrame) -> dict[str, float]:
 
 def eb_hyperparams(shots: pl.DataFrame) -> tuple[float, float]:
     """League mu and tau2 for shot-making, from the season's own 300+ FGA
-    pool — the same normal-normal EB rule the projection study validated."""
+    pool, the same normal-normal EB rule the projection study validated."""
     pool = shotq.player_table(shots).filter(pl.col("fga") >= MIN_FGA_EB)
     _, mu, tau2, _ = proj.eb_posterior(pool["making_100"].to_numpy(),
                                        pool["making_100_se"].to_numpy())
@@ -146,37 +146,37 @@ def keys_bullets(p: dict, lg: dict, pers: pl.DataFrame,
     keys = []
     d_corner = p["corner_share_of_3s"] - lg["corner_share_of_3s"]
     if d_corner > 0.02:
-        keys.append(f"**They hunt corner threes** — {fmt_pct(p['corner_share_of_3s'])} "
+        keys.append(f"**They hunt corner threes**: {fmt_pct(p['corner_share_of_3s'])} "
                     f"of their threes come from the corners (league "
                     f"{fmt_pct(lg['corner_share_of_3s'])}). Run shooters off "
                     "the corner line first.")
     elif d_corner < -0.02:
-        keys.append(f"**Above-the-break three team** — corners are only "
+        keys.append(f"**Above-the-break three team**: corners are only "
                     f"{fmt_pct(p['corner_share_of_3s'])} of their threes "
                     f"(league {fmt_pct(lg['corner_share_of_3s'])}); their "
                     "spacing lives higher on the arc.")
     if p["pct_rim"] - lg["pct_rim"] > 0.02:
-        keys.append(f"**Rim-pressure offense** — {fmt_pct(p['pct_rim'])} of "
+        keys.append(f"**Rim-pressure offense**: {fmt_pct(p['pct_rim'])} of "
                     f"attempts at the rim vs league {fmt_pct(lg['pct_rim'])}. "
                     "Wall building beats switching small.")
     if p["pct_three"] - lg["pct_three"] > 0.03:
-        keys.append(f"**Volume-three profile** — {fmt_pct(p['pct_three'])} of "
+        keys.append(f"**Volume-three profile**: {fmt_pct(p['pct_three'])} of "
                     f"attempts from deep (league {fmt_pct(lg['pct_three'])}).")
     if p["pct_midrange"] - lg["pct_midrange"] > 0.03:
-        keys.append(f"**Mid-range reliant** — {fmt_pct(p['pct_midrange'])} "
+        keys.append(f"**Mid-range reliant**: {fmt_pct(p['pct_midrange'])} "
                     f"from mid-range vs league {fmt_pct(lg['pct_midrange'])}; "
                     "live with contested twos over open threes.")
     qual = pers.filter(pl.col("fga") >= 200)
     if qual.height:
         mk = qual.sort("making_eb", descending=True).row(0, named=True)
         if mk["making_eb"] > 2:
-            keys.append(f"**{mk['PLAYER_NAME']} is a genuine shot-maker** — "
+            keys.append(f"**{mk['PLAYER_NAME']} is a genuine shot-maker**: "
                         f"{mk['making_eb']:+.1f} pts/100 above expectation "
                         "after empirical-Bayes shrinkage; contest even the "
                         "bad shots.")
         sel = qual.sort("xpps", descending=True).row(0, named=True)
         keys.append(f"**Best shot diet: {sel['PLAYER_NAME']}** "
-                    f"({sel['xpps']:.2f} xPPS on {sel['fga']} FGA) — the "
+                    f"({sel['xpps']:.2f} xPPS on {sel['fga']} FGA). The "
                     "value is where the shots come from; deny the spot, not "
                     "the release.")
     if lineups.height:
@@ -192,7 +192,7 @@ def render_md(team: str, abbr: str, p: dict, lg: dict, pers: pl.DataFrame,
     rows = [
         ("PPS (points per shot)", f"{p['pps']:.3f}", f"{lg['pps']:.3f}",
          fmt_delta(p["pps"] - lg["pps"], pct=False)),
-        ("xPPS — shot-diet price*", f"{p['xpps']:.3f}", f"{lg['xpps']:.3f}",
+        ("xPPS, the shot-diet price*", f"{p['xpps']:.3f}", f"{lg['xpps']:.3f}",
          fmt_delta(p["xpps"] - lg["xpps"], pct=False)),
         ("Shot-making, pts/100 vs model", f"{p['making_100']:+.1f}",
          f"{lg['making_100']:+.1f}",
@@ -243,7 +243,7 @@ drive a conclusion.
 |---|---|---|---|
 {profile_tbl}
 
-\\* xPPS prices where they shoot from, independent of whether shots fell —
+\\* xPPS prices where they shoot from, independent of whether shots fell:
 the stable, scoutable part of the profile (year-over-year r ≈ .9).
 
 ## Personnel (top 8 by volume)
@@ -252,7 +252,7 @@ the stable, scoutable part of the profile (year-over-year r ≈ .9).
 |---|---|---|---|---|---|---|
 {pers_tbl}
 
-EB making = shot-making regressed to league mean by reliability — the
+EB making = shot-making regressed to league mean by reliability: the
 number to trust. RAPM from the opponent-adjusted 2025-26 lineup model
 (±≈3/100 CI at a season of minutes; treat as descriptive).
 
@@ -372,7 +372,7 @@ def build_report(team: str, abbr: str, shots: pl.DataFrame, lg: dict,
     # the HTML renderer adds hover tooltips at each point of use.
     keys = glossary.terms_for(md)
     block = ("## Terms\n\n"
-             + "\n".join(f"- **{k}** — {glossary.TERMS[k][0]}"
+             + "\n".join(f"- **{k}**: {glossary.TERMS[k][0]}"
                          for k in keys)
              + "\n\n")
     return md.replace("## Keys\n", block + "## Keys\n", 1)
@@ -390,7 +390,7 @@ def main(argv: list[str]) -> int:
         md = build_report(team, "PHX", shots, lg, mu, tau2, values)
         committed = (REPORTS / "PHX.md").read_text()
         if md != committed:
-            print("SCOUTING CHECK FAILED: committed PHX.md is stale — "
+            print("SCOUTING CHECK FAILED: committed PHX.md is stale; "
                   "re-run scouting/build_onepager.py --all")
             return 1
         print("SCOUTING CHECK PASSED (committed PHX report reproduces "
