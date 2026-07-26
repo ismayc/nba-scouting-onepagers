@@ -266,7 +266,7 @@ number to trust. RAPM from the opponent-adjusted 2025-26 lineup model
 
 HTML_STYLE = """
 body { font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
-       max-width: 780px; margin: 2rem auto; padding: 0 1rem; color: #1a1a2e;
+       width: min(1150px, 94vw); margin: 2rem auto; padding: 0; color: #1a1a2e;
        line-height: 1.45; }
 h1 { border-bottom: 3px solid #e56020; padding-bottom: .3rem; }
 h2 { color: #1d1160; margin-top: 1.6rem; }
