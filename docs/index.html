@@ -67,6 +67,12 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem;
   padding: 1rem 1.25rem; font-size: .85rem; color: var(--ink-3);
   text-align: center; }
 footer a { color: var(--ink-2); }
+details.terms { margin: 1rem 0; border: 1px solid var(--rule);
+  border-radius: 8px; background: var(--surface-2); font-size: .9rem; }
+details.terms summary { padding: .55rem .9rem; cursor: pointer;
+  color: var(--ink-2); font-weight: 600; }
+details.terms ul { margin: 0; padding: .2rem 1.4rem .8rem; }
+details.terms li { margin: .3rem 0; color: var(--ink-2); }
 /* hub cards */
 .cards { display: grid; grid-template-columns:
   repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
@@ -92,11 +98,23 @@ footer a { color: var(--ink-2); }
 <main>
 <div class="hero">
 <h1>Opponent scouting one-pagers</h1>
-<p class="deck">One page per team for the full 2025-26 season, generated
-from public data by a gated pipeline: shot profile vs league, personnel
-split into diet and EB-shrunk making, most-used lineups, and rule-generated
-keys. The committed reports must reproduce byte-for-byte from the data.</p>
+<p class="deck">One page per team for the full 2025-26 season — the daily
+deliverable of a coaching-analytics seat, generated end-to-end from public
+data.</p>
 </div>
+<p>Each report reads the way a staff consumes it: the keys up top, then
+the evidence beneath them. The shot profile prices where a team shoots
+from using a model whose season-to-season transfer was validated by
+backtest; personnel is split into shot <em>diet</em> (the part that
+repeats year over year) and shot <em>making</em> (the part that is half
+noise) — and the making numbers are shrunk by empirical Bayes before any
+bullet is allowed to call someone a shot-maker, so a hot month cannot
+drive a game plan. Lineups come from the per-team files, player impact
+from the opponent-adjusted RAPM model, and every claim in the keys traces
+to a number in a table below it.</p>
+<p>The reports cannot silently drift: the pipeline regenerates the Phoenix
+report in memory on every family check run and fails unless the committed
+copy matches byte-for-byte.</p>
 <div class="cards">
 <div class="card"><h3>Atlanta Hawks</h3><span class="links"><a href="ATL.html">one-pager →</a></span></div><div class="card"><h3>Brooklyn Nets</h3><span class="links"><a href="BKN.html">one-pager →</a></span></div><div class="card"><h3>Boston Celtics</h3><span class="links"><a href="BOS.html">one-pager →</a></span></div><div class="card"><h3>Charlotte Hornets</h3><span class="links"><a href="CHA.html">one-pager →</a></span></div><div class="card"><h3>Chicago Bulls</h3><span class="links"><a href="CHI.html">one-pager →</a></span></div><div class="card"><h3>Cleveland Cavaliers</h3><span class="links"><a href="CLE.html">one-pager →</a></span></div><div class="card"><h3>Dallas Mavericks</h3><span class="links"><a href="DAL.html">one-pager →</a></span></div><div class="card"><h3>Denver Nuggets</h3><span class="links"><a href="DEN.html">one-pager →</a></span></div><div class="card"><h3>Detroit Pistons</h3><span class="links"><a href="DET.html">one-pager →</a></span></div><div class="card"><h3>Golden State Warriors</h3><span class="links"><a href="GSW.html">one-pager →</a></span></div><div class="card"><h3>Houston Rockets</h3><span class="links"><a href="HOU.html">one-pager →</a></span></div><div class="card"><h3>Indiana Pacers</h3><span class="links"><a href="IND.html">one-pager →</a></span></div><div class="card"><h3>LA Clippers</h3><span class="links"><a href="LAC.html">one-pager →</a></span></div><div class="card"><h3>Los Angeles Lakers</h3><span class="links"><a href="LAL.html">one-pager →</a></span></div><div class="card"><h3>Memphis Grizzlies</h3><span class="links"><a href="MEM.html">one-pager →</a></span></div><div class="card"><h3>Miami Heat</h3><span class="links"><a href="MIA.html">one-pager →</a></span></div><div class="card"><h3>Milwaukee Bucks</h3><span class="links"><a href="MIL.html">one-pager →</a></span></div><div class="card"><h3>Minnesota Timberwolves</h3><span class="links"><a href="MIN.html">one-pager →</a></span></div><div class="card"><h3>New Orleans Pelicans</h3><span class="links"><a href="NOP.html">one-pager →</a></span></div><div class="card"><h3>New York Knicks</h3><span class="links"><a href="NYK.html">one-pager →</a></span></div><div class="card"><h3>Oklahoma City Thunder</h3><span class="links"><a href="OKC.html">one-pager →</a></span></div><div class="card"><h3>Orlando Magic</h3><span class="links"><a href="ORL.html">one-pager →</a></span></div><div class="card"><h3>Philadelphia 76ers</h3><span class="links"><a href="PHI.html">one-pager →</a></span></div><div class="card"><h3>Phoenix Suns</h3><span class="links"><a href="PHX.html">one-pager →</a></span></div><div class="card"><h3>Portland Trail Blazers</h3><span class="links"><a href="POR.html">one-pager →</a></span></div><div class="card"><h3>Sacramento Kings</h3><span class="links"><a href="SAC.html">one-pager →</a></span></div><div class="card"><h3>San Antonio Spurs</h3><span class="links"><a href="SAS.html">one-pager →</a></span></div><div class="card"><h3>Toronto Raptors</h3><span class="links"><a href="TOR.html">one-pager →</a></span></div><div class="card"><h3>Utah Jazz</h3><span class="links"><a href="UTA.html">one-pager →</a></span></div><div class="card"><h3>Washington Wizards</h3><span class="links"><a href="WAS.html">one-pager →</a></span></div>
 </div>
