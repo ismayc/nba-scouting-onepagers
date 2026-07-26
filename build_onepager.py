@@ -278,8 +278,14 @@ th { background: #1d1160; color: #fff; }
 tr:nth-child(even) td { background: #f6f5fa; }
 li { margin: .35rem 0; }
 em.note { color: #555; font-size: .85rem; }
-abbr[title] { text-decoration: underline dotted #e56020; cursor: help;
-              text-underline-offset: 2px; }
+abbr[data-tip] { text-decoration: underline dotted #e56020; cursor: help;
+  text-underline-offset: 2px; position: relative; }
+abbr[data-tip]:hover::after { content: attr(data-tip); position: absolute;
+  left: 0; top: 1.5em; z-index: 40; background: #1a1a2e; color: #fff;
+  padding: .5rem .75rem; border-radius: 7px; width: max-content;
+  max-width: min(340px, 80vw); font-size: .82rem; line-height: 1.45;
+  white-space: normal; box-shadow: 0 4px 16px rgba(0,0,0,.28);
+  pointer-events: none; }
 @media print { body { margin: 0 auto; } }
 """
 
@@ -355,8 +361,9 @@ def md_to_html(md: str, title: str) -> str:
             f'<meta property="og:image" content="{og_image}">\n'
             f'<meta name="twitter:card" content="summary_large_image">\n'
             f'<meta name="twitter:image" content="{og_image}">\n')
-    return (meta + f"<style>{HTML_STYLE}</style>\n"
-            + tipify_html("\n".join(out)) + "\n")
+    body_html = tipify_html("\n".join(out)).replace(
+        '<abbr title="', '<abbr data-tip="')
+    return meta + f"<style>{HTML_STYLE}</style>\n" + body_html + "\n"
 
 
 def tipify_html(body: str) -> str:
