@@ -336,7 +336,26 @@ def md_to_html(md: str, title: str) -> str:
                 flush()
             para.append(line.replace("\\*", "*"))
     flush()
-    return (f"<title>{title}</title>\n<style>{HTML_STYLE}</style>\n"
+    favicon = ('<link rel="icon" href="data:image/svg+xml,'
+               '<svg xmlns=%22http://www.w3.org/2000/svg%22 '
+               'viewBox=%220 0 100 100%22>'
+               '<text y=%22.9em%22 font-size=%2290%22>🏀</text></svg>">')
+    og_image = ("https://ismayc.github.io/basketball-data-science/"
+                "og-image.png")
+    meta = (f"<title>{title}</title>\n{favicon}\n"
+            f'<meta name="viewport" content="width=device-width, '
+            f'initial-scale=1">\n'
+            f'<meta property="og:type" content="website">\n'
+            f'<meta property="og:site_name" content="Basketball Data '
+            f'Science">\n'
+            f'<meta property="og:title" content="{title}">\n'
+            f'<meta property="og:description" content="Auto-generated NBA '
+            f'opponent scouting report, full 2025-26 season, from gated '
+            f'public-data pipelines.">\n'
+            f'<meta property="og:image" content="{og_image}">\n'
+            f'<meta name="twitter:card" content="summary_large_image">\n'
+            f'<meta name="twitter:image" content="{og_image}">\n')
+    return (meta + f"<style>{HTML_STYLE}</style>\n"
             + tipify_html("\n".join(out)) + "\n")
 
 
