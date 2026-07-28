@@ -55,6 +55,7 @@ shotq = load_module("shot-quality-study/python/02_model.py", "shotq_model")
 proj = load_module("shot-quality-study/python/08_projection.py",
                    "shotq_projection")
 glossary = load_module("basketball-analysis-tools/glossary.py", "portfolio_glossary")
+family_fonts = load_module("basketball-analysis-tools/family_fonts.py", "family_fonts")
 
 
 def load_scored_shots() -> pl.DataFrame:
@@ -265,29 +266,80 @@ number to trust. RAPM from the opponent-adjusted 2025-26 lineup model
 
 
 HTML_STYLE = """
-body { font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
-       width: min(1150px, 94vw); margin: 2rem auto; padding: 0; color: #1a1a2e;
-       line-height: 1.45; }
-h1 { border-bottom: 3px solid #e56020; padding-bottom: .3rem; }
-h2 { color: #1d1160; margin-top: 1.6rem; }
+:root {
+  --ink: #161512; --ink-2: #52514e; --ink-3: #898781;
+  --surface: #faf9f6; --surface-2: #f2f1ea; --rule: #e1e0d9;
+  --accent: #e56020; --accent-ink: #a83f12;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #f5f3ec; --ink-2: #c3c2b7; --ink-3: #898781;
+    --surface: #0f0e0d; --surface-2: #1a1a19; --rule: #2c2c2a;
+    --accent: #d95926; --accent-ink: #ea9066;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #f5f3ec; --ink-2: #c3c2b7; --ink-3: #898781;
+  --surface: #0f0e0d; --surface-2: #1a1a19; --rule: #2c2c2a;
+  --accent: #d95926; --accent-ink: #ea9066;
+}
+.themebtn { position: fixed; top: 14px; right: 14px; background: var(--surface);
+  border: 1px solid var(--rule); border-radius: 999px; width: 32px;
+  height: 32px; cursor: pointer; color: var(--ink-2); font-size: 1rem;
+  line-height: 1; z-index: 50; }
+.themebtn:hover { border-color: var(--accent); color: var(--ink); }
+@media print { .themebtn { display: none; } }
+body { font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial,
+       sans-serif; width: min(1150px, 94vw); margin: 2rem auto; padding: 0;
+       background: var(--surface); color: var(--ink); line-height: 1.5; }
+h1, h2 { font-family: "Barlow Condensed", system-ui, sans-serif;
+  font-weight: 600; text-transform: uppercase; letter-spacing: .02em;
+  text-wrap: balance; }
+h1 { font-size: 2.6rem; line-height: 1.02;
+     border-bottom: 3px solid var(--accent); padding-bottom: .4rem; }
+h2 { font-size: 1.65rem; line-height: 1.08; margin-top: 1.8rem; }
+a { color: var(--accent-ink); }
 table { border-collapse: collapse; width: 100%; font-size: .92rem;
         font-variant-numeric: tabular-nums; }
-th, td { border-bottom: 1px solid #ddd; padding: .35rem .5rem;
+th, td { border-bottom: 1px solid var(--rule); padding: .35rem .5rem;
          text-align: left; }
-th { background: #1d1160; color: #fff; }
-tr:nth-child(even) td { background: #f6f5fa; }
+th { color: var(--ink-2); font-weight: 600;
+     border-bottom: 2px solid var(--rule); }
+tr:nth-child(even) td { background: var(--surface-2); }
 li { margin: .35rem 0; }
-em.note { color: #555; font-size: .85rem; }
-abbr[data-tip] { text-decoration: underline dotted #e56020; cursor: help;
-  text-underline-offset: 2px; position: relative; }
+em.note { color: var(--ink-3); font-size: .85rem; }
+code { background: var(--surface-2); border: 1px solid var(--rule);
+  border-radius: 4px; padding: .08em .35em; font-size: .86em; }
+abbr[data-tip] { text-decoration: underline dotted var(--accent);
+  cursor: help; text-underline-offset: 2px; position: relative; }
 abbr[data-tip]:hover::after { content: attr(data-tip); position: absolute;
-  left: 0; top: 1.5em; z-index: 40; background: #1a1a2e; color: #fff;
-  padding: .5rem .75rem; border-radius: 7px; width: max-content;
-  max-width: min(340px, 80vw); font-size: .82rem; line-height: 1.45;
-  white-space: normal; box-shadow: 0 4px 16px rgba(0,0,0,.28);
-  pointer-events: none; }
+  left: 0; top: 1.5em; z-index: 40; background: var(--ink);
+  color: var(--surface); padding: .5rem .75rem; border-radius: 7px;
+  width: max-content; max-width: min(340px, 80vw); font-size: .82rem;
+  line-height: 1.45; white-space: normal;
+  box-shadow: 0 4px 16px rgba(0,0,0,.28); pointer-events: none; }
 @media print { body { margin: 0 auto; } }
 """
+
+FONTS_LINK = f"<style>{family_fonts.FONT_FACE_CSS}</style>\n"
+
+THEME_BOOT = (
+    "<script>(function(){try{var t=localStorage.getItem('family:theme');"
+    "if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}"
+    "catch(e){}})();</script>\n")
+
+THEME_TOGGLE = (
+    '<button class="themebtn" type="button" '
+    'aria-label="Toggle color theme">◐</button>\n'
+    "<script>(function(){var b=document.querySelector('.themebtn');"
+    "b.addEventListener('click',function(){"
+    "var e=document.documentElement.dataset.theme;"
+    "var cur=(e==='dark'||e==='light')?e:"
+    "(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');"
+    "var next=cur==='dark'?'light':'dark';"
+    "document.documentElement.dataset.theme=next;"
+    "try{localStorage.setItem('family:theme',next);}catch(x){}});})();"
+    "</script>\n")
 
 
 def md_to_html(md: str, title: str) -> str:
@@ -348,7 +400,8 @@ def md_to_html(md: str, title: str) -> str:
                '<text y=%22.9em%22 font-size=%2290%22>🏀</text></svg>">')
     og_image = ("https://ismayc.github.io/basketball-data-science/"
                 "og-image.png")
-    meta = (f"<title>{title}</title>\n{favicon}\n"
+    meta = ('<meta charset="utf-8">\n'
+            f"<title>{title}</title>\n{favicon}\n"
             f'<meta name="viewport" content="width=device-width, '
             f'initial-scale=1">\n'
             f'<meta property="og:type" content="website">\n'
@@ -363,7 +416,8 @@ def md_to_html(md: str, title: str) -> str:
             f'<meta name="twitter:image" content="{og_image}">\n')
     body_html = tipify_html("\n".join(out)).replace(
         '<abbr title="', '<abbr data-tip="')
-    return meta + f"<style>{HTML_STYLE}</style>\n" + body_html + "\n"
+    return (meta + THEME_BOOT + FONTS_LINK + f"<style>{HTML_STYLE}</style>\n"
+            + body_html + "\n" + THEME_TOGGLE)
 
 
 def tipify_html(body: str) -> str:
