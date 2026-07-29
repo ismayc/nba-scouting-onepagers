@@ -56,6 +56,7 @@ proj = load_module("shot-quality-study/python/08_projection.py",
                    "shotq_projection")
 glossary = load_module("basketball-analysis-tools/glossary.py", "portfolio_glossary")
 family_fonts = load_module("basketball-analysis-tools/family_fonts.py", "family_fonts")
+family_brand = load_module("basketball-analysis-tools/family_brand.py", "family_brand")
 
 
 def load_scored_shots() -> pl.DataFrame:
@@ -394,12 +395,8 @@ def md_to_html(md: str, title: str) -> str:
                 flush()
             para.append(line.replace("\\*", "*"))
     flush()
-    favicon = ('<link rel="icon" href="data:image/svg+xml,'
-               '<svg xmlns=%22http://www.w3.org/2000/svg%22 '
-               'viewBox=%220 0 100 100%22>'
-               '<text y=%22.9em%22 font-size=%2290%22>🏀</text></svg>">')
-    og_image = ("https://ismayc.github.io/basketball-data-science/"
-                "og-image.png")
+    favicon = family_brand.FAVICON
+    og_image = family_brand.OG_IMAGE
     meta = ('<meta charset="utf-8">\n'
             f"<title>{title}</title>\n{favicon}\n"
             f'<meta name="viewport" content="width=device-width, '
