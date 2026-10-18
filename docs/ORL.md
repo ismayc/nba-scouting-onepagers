@@ -20,7 +20,7 @@ drive a conclusion.
 - **empirical Bayes**: Estimate the spread of true skill across the league from the data, then pull each individual's noisy estimate toward the league mean in proportion to its noise.
 - **shrinkage weight**: The fraction of an observed number that survives empirical-Bayes regression: 1 means fully trusted, 0 means replaced by the league mean.
 - **CI**: Confidence interval.
-- **corner three**: A three-pointer from the corner, where the NBA line is roughly 3 ft closer than the arc - the geometry discount that makes it the cheapest three.
+- **corner three**: A three-pointer from the corner, where the NBA line is about 1.75 ft closer than the arc (22 ft vs 23 ft 9 in) - the geometry discount that makes it the cheapest three.
 
 ## Keys
 
