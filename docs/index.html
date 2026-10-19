@@ -161,6 +161,21 @@ details.terms summary { padding: .55rem .9rem; cursor: pointer;
   color: var(--ink-2); font-weight: 600; }
 details.terms ul { margin: 0; padding: .2rem 1.4rem .8rem; }
 details.terms li { margin: .3rem 0; color: var(--ink-2); }
+/* sticky section nav (study pages): the masthead scrolls away, this stays */
+.sectionnav { position: sticky; top: 0; z-index: 30; background: var(--surface);
+  border-bottom: 1px solid var(--rule); }
+.sectionnav .inner { width: min(1200px, 94vw); margin: 0 auto; display: flex;
+  gap: 1.3rem; overflow-x: auto; white-space: nowrap; scrollbar-width: none;
+  padding: .55rem 0 .45rem; }
+.sectionnav .inner::-webkit-scrollbar { display: none; }
+.sectionnav a { font-family: "Barlow Condensed", system-ui, sans-serif;
+  font-weight: 500; font-size: .95rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-3); text-decoration: none;
+  padding-bottom: .15rem; border-bottom: 2px solid transparent; }
+.sectionnav a:hover { color: var(--ink); }
+.sectionnav a[aria-current="true"] { color: var(--accent-ink);
+  border-bottom-color: var(--accent); }
+main [id] { scroll-margin-top: 3.6rem; }
 /* hub cards */
 .cards { display: grid; grid-template-columns:
   repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
@@ -209,6 +224,7 @@ html.reveal .is-in { opacity: 1; transform: none; }
   <a href="https://github.com/ismayc/nba-scouting-onepagers">Code on GitHub</a>
   <button class="themebtn" type="button" aria-label="Toggle color theme">◐</button>
 </div></header>
+
 <main>
 <div class="hero">
 <div class="eyebrow">The scouting layer &middot; 30 teams &middot; 2025-26</div>
@@ -293,5 +309,6 @@ copy matches byte-for-byte.</p>
   window.__revealReady = true;
 })();
 </script>
+
 </body>
 </html>
